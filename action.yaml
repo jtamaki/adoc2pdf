@@ -14,7 +14,7 @@ runs:
       run: |
         mkdir ${{ runner.temp }}\7z
         Invoke-WebRequest -Uri https://www.7-zip.org/a/7zr.exe -OutFile "${{ runner.temp }}\7z\7zr.exe"
-        ${{ runner.temp }}\7z >> $Env:GITHUB_PATH
+        "${{ runner.temp }}\7z" >> $Env:GITHUB_PATH
       shell: powershell
     - run: 7zr.exe --version
       shell: powershell
