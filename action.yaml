@@ -19,12 +19,15 @@ runs:
     - name: Setup Ruby
       shell: powershell
       run: |
-        mkdir ${{ runner.temp }}\ruby
         Invoke-WebRequest `
           -Uri https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-3.2.3-1/rubyinstaller-3.2.3-1-x64.7z `
           -OutFile "${{ runner.temp }}\rubyinstaller-3.2.3-1-x64.7z"
-        7zr.exe x ${{ runner.temp }}\rubyinstaller-3.2.3-1-x64.7z
+        7zr.exe x -o${{ runner.temp }} ${{ runner.temp }}\rubyinstaller-3.2.3-1-x64.7z
         "${{ runner.temp }}\rubyinstaller-3.2.3-1-x64\bin" >> $Env:GITHUB_PATH
+    - name: Test Ruby
+      shell: powershell
+      run: ruby -v
+
     # - run: 7zr.exe --version
     #   shell: powershell
     # - name: Setup Ruby
@@ -35,9 +38,7 @@ runs:
     #   # with:
     #   #   ruby-version: '3.3' # Not needed with a .ruby-version file
     #   #   #bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-    # - name: Test Ruby
-    #   run: ruby -v
-    #   shell: powershell
+
 
     - name: Set GitHub Path
       run: (Resolve-Path ${{ github.action_path }}).Path >> $Env:GITHUB_PATH
