@@ -10,7 +10,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: Invoke-WebRequest "https://www.7-zip.org/a/7z2301-linux-x64.tar.xz" -OutFile "${{ runner.temp }}""
+    - run: Invoke-WebRequest "https://www.7-zip.org/a/7z2301-linux-x64.tar.xz" -OutFile "${{ runner.temp }}"
       shell: powershell
     # - name: Setup Ruby
     #   #uses: ruby/setup-ruby@v1
