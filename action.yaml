@@ -24,30 +24,15 @@ runs:
           -OutFile "${{ runner.temp }}\rubyinstaller-3.2.3-1-x64.7z"
         7zr.exe x -o${{ runner.temp }} ${{ runner.temp }}\rubyinstaller-3.2.3-1-x64.7z
         "${{ runner.temp }}\rubyinstaller-3.2.3-1-x64\bin" >> $Env:GITHUB_PATH
-    # - name: Install bundler
-    #   shell: powershell
-    #   run: gem install bundler -v "2.5.6"
     - name: Install Gems
       shell: powershell
       run: gem install asciidoctor-pdf -v "2.3.13"
-
-
-    # - run: 7zr.exe --version
-    #   shell: powershell
-    # - name: Setup Ruby
-    #   #uses: ruby/setup-ruby@v1
-    #   uses: actions/setup-ruby@v1
-    #   with:
-    #     ruby-version: '2.6'      
-    #   # with:
-    #   #   ruby-version: '3.3' # Not needed with a .ruby-version file
-    #   #   #bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-
-
-    - name: Set GitHub Path
-      run: (Resolve-Path ${{ github.action_path }}).Path >> $Env:GITHUB_PATH
+    - name: Convert AsciiDoc to PDF
       shell: powershell
-
-    # - name: Run goodbye.sh
-    #   run: goodbye.sh
-    #   shell: bash
+      run: |
+        ruby ${{ github.action_path }}\scripts\convert_asciidoc_to_pdf `
+          -i ${{ inputs.input_dir }} `
+          -t ${{ github.action_path }}\themes `
+          -f ${{ github.action_path }}\fonts `
+          -c ${{ github.action_path }}\converter `
+          -o ${{ inputs.output_dir }}

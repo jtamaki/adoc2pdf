@@ -1,0 +1,71 @@
+extends: default-with-font-fallbacks
+page:
+  margin: [0.9in, 0.9in, 0.9in, 0.9in]
+base:
+  align: left
+  font_color: 000000
+  font_family: Noto Serif
+  line_height_length: 15.5
+  line_height: $base_line_height_length / $base_font_size
+code:
+  font-size: $base_font_size * 0.9
+caption:
+  align: center
+heading:
+  chapter:
+    break-before: auto
+  font_family: $base_font_family
+  font_style: bold
+  font_color: 000000
+  h1_font_size: floor($base_font_size * 1.4)
+  h2_font_size: floor($base_font_size * 1.2)
+  h3_font_size: round($base_font_size * 1.1)
+  h4_font_size: $base_font_size
+  h5_font_size: $base_font_size
+  h6_font_size: $base_font_size
+table:
+  head:
+    font_color: $base_font_color
+    background_color: [185,174,166]
+  foot:
+    background_color: [185,174,166]
+  cell_padding: [3, 3, 3, 3]
+header:
+  border-color: #aaaaaa
+  border-style: double
+  border-width: 0.25
+  height: $base-line-height-length * 2.8
+  vertical-align: bottom
+  padding: [$base-line-height-length / 5, 3, 5, 3]
+  recto:
+    left:
+      content: ~
+    center:
+      content: ~
+    right:
+      content: image:protected_seal.png[]
+  verso:
+    left:
+      content: ~
+    center:
+      content: ~
+    right:
+      content: image:protected_seal.png[]
+footer:
+  border-color: #aaaaaa
+  border-style: double
+  border-width: 0.25
+  recto:
+    left:
+      content: ~  
+    center:
+      content: '{page-number} / {page-count}'
+    right:
+      content: '&#169; Toyota Motor Corporation'
+  verso:
+    left:
+      content: ~  
+    center:
+      content: '{page-number} / {page-count}'
+    right:
+      content: '&#169; Toyota Motor Corporation'
