@@ -24,9 +24,9 @@ runs:
           -OutFile "${{ runner.temp }}\rubyinstaller-3.2.3-1-x64.7z"
         7zr.exe x -o${{ runner.temp }} ${{ runner.temp }}\rubyinstaller-3.2.3-1-x64.7z
         "${{ runner.temp }}\rubyinstaller-3.2.3-1-x64\bin" >> $Env:GITHUB_PATH
-    - name: Test Ruby
+    - name: Install bundler
       shell: powershell
-      run: ruby -v
+      run: gem install bundler -v "2.5.6"
 
     # - run: 7zr.exe --version
     #   shell: powershell
