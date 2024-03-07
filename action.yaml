@@ -11,14 +11,10 @@ runs:
   using: "composite"
   steps:
     - name: Set Greeting
-      run: echo "Hello World"
-      shell: bash
+      run: Write-Output "Hello World."
 
     - name: Set GitHub Path
-      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
-      shell: bash
-      env:
-        GITHUB_ACTION_PATH: ${{ github.action_path }}
+      run: (Resolve-Path ${{ github.action_path }}).Path >> $Env:GITHUB_PATH
 
     # - name: Run goodbye.sh
     #   run: goodbye.sh
