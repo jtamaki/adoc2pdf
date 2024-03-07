@@ -16,7 +16,7 @@ runs:
         Invoke-WebRequest -Uri https://www.7-zip.org/a/7zr.exe -OutFile "${{ runner.temp }}\7z\7zr.exe"
         "${{ runner.temp }}\7z\7zr.exe" >> $Env:GITHUB_PATH
       shell: powershell
-    - run: 7zr.exe -v
+    - run: ${{ runner.temp }}\7z\7zr.exe -v
       shell: powershell
     # - name: Setup Ruby
     #   #uses: ruby/setup-ruby@v1
