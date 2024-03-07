@@ -14,7 +14,7 @@ args = [
   "-a pdf-themesdir=#{option[:themes]}",
   #"-a pdf-fontsdir=#{option[:fonts]}",
   "-a scripts=cjk",
-  "-r #{option[:converter]/extended-pdf-converter.rb}",
+  "-r #{option[:converter]}/extended-pdf-converter.rb",
   "-D #{option[:output]}"
 ]
 
