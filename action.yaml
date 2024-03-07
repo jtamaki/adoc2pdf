@@ -10,7 +10,13 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: Invoke-WebRequest -Uri https://www.7-zip.org/a/7zr.exe -OutFile "${{ runner.temp }}\7zr.exe"
+    - name: Setup 7z
+      run: |
+        mkdir ${{ runner.temp }}\7z
+        Invoke-WebRequest -Uri https://www.7-zip.org/a/7zr.exe -OutFile "${{ runner.temp }}\7z\7zr.exe"
+        "${{ runner.temp }}\7z\7zr.exe" >> $Env:GITHUB_PATH
+      shell: powershell
+    - run: 7zr.exe -v
       shell: powershell
     # - name: Setup Ruby
     #   #uses: ruby/setup-ruby@v1
