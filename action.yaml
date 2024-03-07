@@ -10,8 +10,13 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Set Greeting
-      run: Write-Output "Hello World."
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.3' # Not needed with a .ruby-version file
+        #bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - name: Test Ruby
+      run: ruby -v
       shell: powershell
 
     - name: Set GitHub Path
