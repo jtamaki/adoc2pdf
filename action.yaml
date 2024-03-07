@@ -12,11 +12,11 @@ runs:
   steps:
     - name: Set Greeting
       run: Write-Output "Hello World."
-      shell: pwsh
+      shell: powershell
 
     - name: Set GitHub Path
       run: (Resolve-Path ${{ github.action_path }}).Path >> $Env:GITHUB_PATH
-      shell: pwsh
+      shell: powershell
 
     # - name: Run goodbye.sh
     #   run: goodbye.sh
