@@ -16,8 +16,16 @@ runs:
         Invoke-WebRequest -Uri https://www.7-zip.org/a/7zr.exe -OutFile "${{ runner.temp }}\7z\7zr.exe"
         "${{ runner.temp }}\7z" >> $Env:GITHUB_PATH
       shell: powershell
-    - run: 7zr.exe --version
-      shell: powershell
+    - name: Setup Ruby
+      run: |
+        mkdir ${{ runner.temp }}\ruby
+        Invoke-WebRequest `
+          -Uri https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-3.2.3-1/rubyinstaller-3.2.3-1-x64.7z `
+          -OutFile "${{ runner.temp }}\rubyinstaller-3.2.3-1-x64.7z"
+        7zr.exe x ${{ runner.temp }}\rubyinstaller-3.2.3-1-x64.7z
+        "${{ runner.temp }}\rubyinstaller-3.2.3-1-x64\bin" >> $Env:GITHUB_PATH
+    # - run: 7zr.exe --version
+    #   shell: powershell
     # - name: Setup Ruby
     #   #uses: ruby/setup-ruby@v1
     #   uses: actions/setup-ruby@v1
