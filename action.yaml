@@ -10,17 +10,18 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Setup Ruby
-      #uses: ruby/setup-ruby@v1
-      uses: actions/setup-ruby@v1
-      with:
-        ruby-version: '2.6'      
-      # with:
-      #   ruby-version: '3.3' # Not needed with a .ruby-version file
-      #   #bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-    - name: Test Ruby
-      run: ruby -v
-      shell: powershell
+    - run: Invoke-WebRequest "https://www.7-zip.org/a/7z2301-linux-x64.tar.xz" -OutFile "${{ runner.temp }}""
+    # - name: Setup Ruby
+    #   #uses: ruby/setup-ruby@v1
+    #   uses: actions/setup-ruby@v1
+    #   with:
+    #     ruby-version: '2.6'      
+    #   # with:
+    #   #   ruby-version: '3.3' # Not needed with a .ruby-version file
+    #   #   #bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    # - name: Test Ruby
+    #   run: ruby -v
+    #   shell: powershell
 
     - name: Set GitHub Path
       run: (Resolve-Path ${{ github.action_path }}).Path >> $Env:GITHUB_PATH
