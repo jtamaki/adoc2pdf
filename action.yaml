@@ -10,23 +10,23 @@ inputs:
 runs:
   using: "composite"
   steps:
-    # - name: Setup 7z
-    #   shell: powershell
-    #   run: |
-    #     mkdir ${{ runner.temp }}\7z
-    #     Invoke-WebRequest -Uri https://www.7-zip.org/a/7zr.exe -OutFile "${{ runner.temp }}\7z\7zr.exe"
-    #     "${{ runner.temp }}\7z" >> $Env:GITHUB_PATH
-    # - name: Setup Ruby
-    #   shell: powershell
-    #   run: |
-    #     Invoke-WebRequest `
-    #       -Uri https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-3.2.3-1/rubyinstaller-3.2.3-1-x64.7z `
-    #       -OutFile "${{ runner.temp }}\rubyinstaller-3.2.3-1-x64.7z"
-    #     7zr.exe x -o${{ runner.temp }} ${{ runner.temp }}\rubyinstaller-3.2.3-1-x64.7z
-    #     "${{ runner.temp }}\rubyinstaller-3.2.3-1-x64\bin" >> $Env:GITHUB_PATH
-    # - name: Install Gems
-    #   shell: powershell
-    #   run: gem install asciidoctor-pdf -v "2.3.13"
+    - name: Setup 7z
+      shell: powershell
+      run: |
+        mkdir ${{ runner.temp }}\7z
+        Invoke-WebRequest -Uri https://www.7-zip.org/a/7zr.exe -OutFile "${{ runner.temp }}\7z\7zr.exe"
+        "${{ runner.temp }}\7z" >> $Env:GITHUB_PATH
+    - name: Setup Ruby
+      shell: powershell
+      run: |
+        Invoke-WebRequest `
+          -Uri https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-3.2.3-1/rubyinstaller-3.2.3-1-x64.7z `
+          -OutFile "${{ runner.temp }}\rubyinstaller-3.2.3-1-x64.7z"
+        7zr.exe x -o${{ runner.temp }} ${{ runner.temp }}\rubyinstaller-3.2.3-1-x64.7z
+        "${{ runner.temp }}\rubyinstaller-3.2.3-1-x64\bin" >> $Env:GITHUB_PATH
+    - name: Install Gems
+      shell: powershell
+      run: gem install asciidoctor-pdf -v "2.3.13"
     # - name: Convert AsciiDoc to PDF
     #   shell: powershell
     #   run: |
