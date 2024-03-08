@@ -34,6 +34,4 @@ runs:
 
     - name: Convert AsciiDoc to PDF
       shell: powershell
-      run: |
-        ruby ${{ github.action_path }}\scripts\convert_asciidoc_to_pdf.rb `
-          -i ${{ inputs.input_dir }} -o ${{ inputs.output_dir }}
+      run: ruby ${{ github.action_path }}\adoc2pdf.rb -i ${{ inputs.input_dir }} -o ${{ inputs.output_dir }}
